@@ -8,10 +8,15 @@ class Gruff::AbstractSar
     @graph.title = title
     @graph.x_axis_label = "Time"
     @graph.marker_font_size = font_size
+    @graph.marker_count = 7
 
     @cols = []
     @col_values = []
     @labels = {}
+  end
+
+  def marker_count=(count)
+    @graph.marker_count = count
   end
 
   def graph_style
@@ -72,7 +77,7 @@ class Gruff::AbstractSar
   end
 
   def header_calc(line)
-    if line =~ header_re and @cols.empty?
+    if @cols.empty? and line =~ header_re
       @cols = Regexp.last_match.to_a[2..-1]
       @cols.each do |c|
         c.gsub!(/%/, "\\%")
@@ -94,7 +99,10 @@ class Gruff::AbstractSar
     end
   end
 
-  def write(output)
+  def write(output, min = nil, max = nil)
+    @graph.minimum_value = min ? min : 0
+    @graph.maximum_value = max if max
+
     @graph.write(output)
   end
 

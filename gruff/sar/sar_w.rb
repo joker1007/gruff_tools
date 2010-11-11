@@ -56,9 +56,5 @@ class Gruff::SarW3 < Gruff::AbstractSar
     @graph.y_axis_label = "Context Switch Count"
   end
 
-  def write(output)
-    @graph.minimum_value = 0
-    super
-  end
 end
 

@@ -50,10 +50,6 @@ class Gruff::SarR < Gruff::AbstractSar
     end
   end
 
-  def write(output)
-    @graph.minimum_value = 0
-    super
-  end
 
 end
 
