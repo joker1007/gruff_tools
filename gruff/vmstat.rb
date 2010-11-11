@@ -1,24 +1,5 @@
 require "gruff/sar/abstract_sar"
 
-class Gruff::Vmstat < Gruff::AbstractSar
-  def header_re
-    /(.*?)[\s\t]+(r)[\s\t]+(b)[\s\t]+(w)[\s\t]+(swap)[\s\t]+(free)[\s\t]+(re)[\s\t]+(mf)[\s\t]+(pi)[\s\t]+(po)[\s\t]+(fr)[\s\t]+(de)[\s\t]+(sr)[\s\t]+(.*?)[\s\t]+(.*?)[\s\t]+(.*?)[\s\t]+(.*?)[\s\t]+(in)[\s\t]+(sy)[\s\t]+(cs)[\s\t]+(us)[\s\t]+(sy)[\s\t]+(id)/
-  end
-
-  def line_re
-    /(.*?)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)[\s\t]+(\d+)/
-  end
-
-  def exclude_re
-    /^Average/
-  end
-
-  def initialize(file, title, size = 800, font_size = 12)
-    super
-    @graph.y_axis_label = "Queue Count"
-  end
-end
-
 class Gruff::VmstatFreeMemory < Gruff::AbstractSar
   def header_re
     /(.*?)[\s\t]+r[\s\t]+b[\s\t]+w[\s\t]+(swap)[\s\t]+(free)[\s\t]+re[\s\t]+mf[\s\t]+pi[\s\t]+po[\s\t]+fr[\s\t]+de[\s\t]+sr[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+in[\s\t]+sy[\s\t]+cs[\s\t]+us[\s\t]+sy[\s\t]+id/
@@ -111,14 +92,14 @@ class Gruff::VmstatCpu < Gruff::AbstractSar
   def initialize(file, title, size = 800, font_size = 12)
     super
     @graph.y_axis_label = "Percent"
+    @graph.marker_count = 10
     @graph.last_series_goes_on_bottom = true
   end
 
   def write(output, min = nil, max = nil)
-    @graph.minimum_value = min if min
-    @graph.maximum_value = max ? max : 100
+    @graph.maximum_value = 100
 
-    @graph.write(output)
+    super
   end
 
 end

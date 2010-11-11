@@ -8,7 +8,7 @@ class Gruff::AbstractSar
     @graph.title = title
     @graph.x_axis_label = "Time"
     @graph.marker_font_size = font_size
-    @graph.marker_count = 7
+    @graph.marker_count = 8
 
     @cols = []
     @col_values = []
