@@ -3,23 +3,14 @@
 require 'rubygems'
 
 $LOAD_PATH.push File.dirname(__FILE__)
-require 'gruff/sar/sar_u'
-require 'gruff/sar/sar_q'
-require 'gruff/sar/sar_r'
-require 'gruff/sar/sar_w'
-require 'gruff/sar/sar_a'
-require 'gruff/vmstat'
-require 'gruff/nicstat'
-require 'gruff/iostat'
+require 'gruff/gruff_tool'
 
 
 
 
-
-#sar_u = Gruff::SarU.new("sar_u.log", "bloodstone sar -u", "1600x1000")
-#sar_u.marker_count = 10
-#sar_u.calc
-#sar_u.write("my_sar.png")
+sar_u = Gruff::SarU.new("sar_u.log", "bloodstone sar -u", "1600x1000")
+sar_u.calc
+sar_u.write("my_sar.png")
 
 #sar_q1 = Gruff::SarQ1.new("sar_q.log", "bloodstone sar -q(queues)", "1600x1000")
 #sar_q1.calc
@@ -92,9 +83,9 @@ require 'gruff/iostat'
 #iostat_wait.calc
 #iostat_wait.write("iostat_wait.png", 0)
 
-iostat_busy = Gruff::IostatBusy.new("iochk_0.log", "c0t0d0", "c0t0d0 I/O busy", "1200x800")
-iostat_busy.calc
-iostat_busy.write("iostat_busy.png", 0)
+#iostat_busy = Gruff::IostatBusy.new("iochk_0.log", "c0t0d0", "c0t0d0 I/O busy", "1200x800")
+#iostat_busy.calc
+#iostat_busy.write("iostat_busy.png", 0)
 
 
 puts "Gen Graph"

@@ -1,0 +1,26 @@
+require 'rubygems'
+
+module Gruff
+  autoload :AbstractSar, 'gruff/sar/abstract_sar'
+  autoload :IostatCount, 'gruff/iostat'
+  autoload :IostatByte, 'gruff/iostat'
+  autoload :IostatWait, 'gruff/iostat'
+  autoload :IostatBusy, 'gruff/iostat'
+  autoload :SarR, 'gruff/sar/sar_r'
+  autoload :SarW1, 'gruff/sar/sar_w'
+  autoload :SarW2, 'gruff/sar/sar_w'
+  autoload :SarW3, 'gruff/sar/sar_w'
+  autoload :SarA, 'gruff/sar/sar_a'
+  autoload :SarQ1, 'gruff/sar/sar_q'
+  autoload :SarQ2, 'gruff/sar/sar_q'
+  autoload :SarU, 'gruff/sar/sar_u'
+  autoload :Vmstat, 'gruff/vmstat'
+  autoload :VmstatFreeMemory, 'gruff/vmstat'
+  autoload :VmstatPage1, 'gruff/vmstat'
+  autoload :VmstatPage2, 'gruff/vmstat'
+  autoload :VmstatCpu, 'gruff/vmstat'
+  autoload :NicstatByte, 'gruff/nicstat'
+  autoload :NicstatPacket, 'gruff/nicstat'
+  autoload :NicstatUsage, 'gruff/nicstat'
+end
+

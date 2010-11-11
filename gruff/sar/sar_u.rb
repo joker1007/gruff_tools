@@ -22,13 +22,13 @@ class Gruff::SarU < Gruff::AbstractSar
     super
     @graph.y_axis_label = "Percent"
     @graph.last_series_goes_on_bottom = true
+    @graph.marker_count = 10
   end
 
   def write(output, min = nil, max = nil)
-    @graph.minimum_value = min if min
-    @graph.maximum_value = max ? max : 100
+    @graph.maximum_value = 100
 
-    @graph.write(output)
+    super
   end
 
 end
