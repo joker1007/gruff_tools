@@ -1,0 +1,51 @@
+<form action="/create" method="post" enctype="multipart/form-data">
+  <p>
+
+  <div class="attr" id="file-input">
+    <label for="file">file</label>
+    <input type="file" name="file">
+  </div>
+
+  <div class="attr" id="type-input">
+    <label for="type">type:</label>
+    <select name="type">
+      <option value="sar_u">sar -u</option>
+      <option value="sar_q1">sar -q runq-sz, swpq-sz</option>
+      <option value="sar_q2">sar -q %runocc, %swpocc</option>
+      <option value="sar_w1">sar -w swpin/s, bswin/s, swpot/s</option>
+      <option value="sar_w2">sar -w bswot/s</option>
+      <option value="sar_w3">sar -w pswch/s</option>
+      <option value="sar_r">sar -r</option>
+      <option value="sar_a">sar -a</option>
+      <option value="vmstat_m">vmstat Memory Usage</option>
+      <option value="vmstat_p1">vmstat Page pi,po,fr,de</option>
+      <option value="vmstat_p2">vmstat Page re,sr</option>
+      <option value="nicstat_b">nicstat Byte Bandwidth</option>
+      <option value="nicstat_p">nicstat Packet Bandwidth</option>
+      <option value="nicstat_u">nicstat Usage</option>
+      <option value="iostat_c">iostat I/O Count</option>
+      <option value="iostat_b">iostat I/O Byte</option>
+      <option value="iostat_w">iostat I/O Wait</option>
+      <option value="iostat_u">iostat I/O Busy Percentage</option>
+    </select>
+  </div>
+
+  <div class="attr" id="interface-input" style="display: none;">
+    <label for="interface">interface:</label>
+    <input type="text" name="interface" value=""><br />
+  </div>
+
+  <div class="attr" id="name-input">
+    <label for="name">name:</label>
+    <input type="text" name="name" value=""><br />
+  </div>
+
+  <div class="attr" id="size-input">
+    <label for="size">size:</label>
+    <input type="text" name="size" value=""><br />
+  </div>
+  </p>
+
+
+<p><input type="submit" value="Submit &rarr;"></p>
+</form>

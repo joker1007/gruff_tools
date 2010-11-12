@@ -1,4 +1,3 @@
-require "gruff/sar/abstract_sar"
 
 class Gruff::SarQ1 < Gruff::AbstractSar
   def header_re

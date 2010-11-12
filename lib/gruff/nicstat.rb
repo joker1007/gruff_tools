@@ -1,4 +1,3 @@
-require "gruff/sar/abstract_sar"
 
 class Gruff::NicstatByte < Gruff::AbstractSar
   def header_re
@@ -57,6 +56,7 @@ class Gruff::NicstatUsage < Gruff::AbstractSar
     super(file, title, size, font_size)
     @interface = interface
     @graph.y_axis_label = "Packet Count"
+    @graph.marker_count = 10
   end
 
   def write(output, min = nil, max = nil)

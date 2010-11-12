@@ -3,7 +3,12 @@ require 'gruff'
 class Gruff::AbstractSar
 
   def initialize(filename, title, size = 800, font_size = 12)
-    load_file(filename)
+    if filename.is_a?(String)
+      load_file(filename)
+    elsif filename.is_a?(IO) or filename.is_a?(Tempfile)
+      @lines = filename.readlines
+    end
+
     @graph = graph_style.new size
     @graph.title = title
     @graph.x_axis_label = "Time"

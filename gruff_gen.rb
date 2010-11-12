@@ -3,9 +3,10 @@
 require 'rubygems'
 require 'trollop'
 
-$LOAD_PATH.push File.dirname(__FILE__)
-require 'gruff/gruff_tool'
+$LOAD_PATH.push File.expand_path(File.dirname(__FILE__))
+require 'lib/gruff/gruff_tool'
 
+# Option Parser
 opts = Trollop::options do
   version "gruff_gen 0.0.1 (c) 2010 Tomohiro Hashidate"
   banner <<-EOS
@@ -43,13 +44,13 @@ EOS
   opt :marker_count, "Graph Y axis count", :type => :int
   opt :min, "Graph Y axis minimum value", :type => :int
   opt :max, "Graph Y axis maximum value", :type => :int
-  opt :output, "Target type", :type => :string
+  opt :output, "Output filename", :type => :string
 end
 
 input = ARGV[0]
 output = opts[:output] ? opts[:output] : File.basename(input, ".*") + ".png"
 
-
+# Graph type define
 case opts[:type]
 when "sar_u"
   graph_klass = Gruff::SarU
@@ -91,7 +92,7 @@ when "iostat_u"
   graph_klass = Gruff::IostatBusy
 end
 
-
+# Graph init info
 size = opts[:size] ? opts[:size] : 800
 name = opts[:name] ? opts[:name] : opts[:type]
 fontsize = opts[:fontsize] ? opts[:fontsize] : 12

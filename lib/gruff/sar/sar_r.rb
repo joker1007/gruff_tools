@@ -1,4 +1,3 @@
-require "gruff/sar/abstract_sar"
 
 class Gruff::SarR < Gruff::AbstractSar
   def header_re
@@ -15,7 +14,7 @@ class Gruff::SarR < Gruff::AbstractSar
 
   def initialize(file, title, size = 800, font_size = 12)
     super
-    @graph.y_axis_label = "Free Memory (Mbytes)"
+    @graph.y_axis_label = "Mbytes"
     @graph.marker_count = 7
     @spark = true
   end

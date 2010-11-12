@@ -1,4 +1,3 @@
-require "gruff/sar/abstract_sar"
 
 class Gruff::VmstatFreeMemory < Gruff::AbstractSar
   def header_re

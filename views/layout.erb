@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+    <title>T's Graph Generator</title>
+
+    <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="screen" charset="utf-8">
+    <script type="text/javascript" src="/javascripts/jquery-1.4.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/javascripts/jquery-fonteffect-1.0.0.min.js" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+        $('#title').FontEffect({
+           outline: true,
+           outlineWeight: 2,
+           shadow: true,
+           shadowColor: "#111",
+        });
+
+        $("#type-input").change(function() {
+          var type = "";
+          type = $("#type-input option:selected").text();
+          if (type.indexOf("nicstat", 0) != -1 || type.indexOf("iostat", 0) != -1) {
+            $("#interface-input").slideDown();
+          } else {
+            $("#interface-input").slideUp();
+          }
+        });
+      })
+    </script>
+
+  </head>
+
+  <body>
+    <div id="header">
+      <h1 id="title">T's Graph Generator</h1>
+    </div>
+
+    <div id="main">
+      <%= yield %>
+    </div>
+  </body>
+</html>
