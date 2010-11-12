@@ -28,6 +28,12 @@ class Gruff::AbstractSar
     Gruff::Line
   end
 
+  def theme=(theme_name)
+    valid_theme = %W{37signals greyscale keynote odeo pastel keynote rails_keynote}
+    valid_theme.include?(theme_name)
+    @graph.send("theme_#{theme_name}")
+  end
+
   def load_file(filename)
     file = File.open(filename)
     @lines = file.readlines

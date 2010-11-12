@@ -2,8 +2,8 @@
   <p>
 
   <div class="attr" id="file-input">
-    <label for="file">file</label>
-    <input type="file" name="file">
+    <label for="file">file:</label>
+    <input type="file" name="file" size="60">
   </div>
 
   <div class="attr" id="type-input">
@@ -36,14 +36,24 @@
   </div>
 
   <div class="attr" id="name-input">
-    <label for="name">name:</label>
+    <label for="name">name:(省略可)</label>
     <input type="text" name="name" value=""><br />
   </div>
 
   <div class="attr" id="size-input">
-    <label for="size">size:</label>
-    <input type="text" name="size" value=""><br />
+    <label for="size">size:(省略可)</label>
+    <input type="text" name="size" value="1000x600"><br />
   </div>
+
+  <div class="attr" id="theme-input">
+    <label for="theme">color theme:</label>
+    <select name="theme">
+      <option value="keynote">keynote(黒基調)</option>
+      <option value="pastel">pastel(パステルカラー)</option>
+      <option value="37signals">37signals(水色)</option>
+      <option value="greyscale">greyscale(グレー)</option>
+      <option value="rails_keynote">rails_keynote(濃い青)</option>
+    </select>
   </p>
 
 

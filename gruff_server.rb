@@ -1,3 +1,4 @@
+# coding: utf-8
 require "rubygems"
 require "sinatra"
 
@@ -9,14 +10,16 @@ end
 
 post '/create' do
   
+  f = params[:file][:tempfile]
   @type = params[:type]
+
   if params[:name] and !params[:name].empty?
     @name = params[:name]
   else
     @name = @type
   end
   size = params[:size] ? params[:size] : 800
-  f = params[:file][:tempfile]
+  theme = params[:theme]
 
   @output = "#{Time.now.to_i}.png"
 
@@ -27,6 +30,10 @@ post '/create' do
     gruff = graph_klass.new(f, interface, @name, size, 14)
   else
     gruff = graph_klass.new(f, @name, size, 14)
+  end
+
+  if theme
+    gruff.theme = theme
   end
 
   gruff.calc

@@ -41,6 +41,7 @@ EOS
   opt :name, "Graph name", :type => :string
   opt :size, "Graph image size", :type => :string
   opt :fontsize, "Font size", :type => :int
+  opt :theme, "Color theme", :type => :string, :short => "c"
   opt :marker_count, "Graph Y axis count", :type => :int
   opt :min, "Graph Y axis minimum value", :type => :int
   opt :max, "Graph Y axis maximum value", :type => :int
@@ -107,6 +108,10 @@ if opts[:type].index("nicstat") or opts[:type].index("iostat")
   gruff = graph_klass.new(input, interface_or_device, name, size, fontsize)
 else
   gruff = graph_klass.new(input, name, size, fontsize)
+end
+
+if opts[:theme]
+  gruff.theme = opts[:theme]
 end
 
 gruff.calc
