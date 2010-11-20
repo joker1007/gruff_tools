@@ -7,6 +7,7 @@ module Gruff
   autoload :IostatByte, 'lib/gruff/iostat'
   autoload :IostatWait, 'lib/gruff/iostat'
   autoload :IostatBusy, 'lib/gruff/iostat'
+  autoload :IostatMultiDevice, 'lib/gruff/iostat'
   autoload :SarR, 'lib/gruff/sar/sar_r'
   autoload :SarW1, 'lib/gruff/sar/sar_w'
   autoload :SarW2, 'lib/gruff/sar/sar_w'

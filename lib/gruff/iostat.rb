@@ -103,3 +103,46 @@ class Gruff::IostatBusy < Gruff::AbstractSar
     super
   end
 end
+
+class Gruff::IostatMultiDevice
+  def device_re
+    /.*?[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+\d+[\s\t]+\d+[\s\t]+(#{@device})$/
+  end
+
+  def initialize(filename, device)
+    if filename.is_a?(String)
+      load_file(filename)
+    elsif filename.is_a?(IO) or filename.is_a?(Tempfile)
+      @lines = filename.readlines
+    end
+
+    @device = device
+    @devices = []
+  end
+
+  def load_file(filename)
+    file = File.open(filename)
+    body = file.read(1024*150)
+    @lines = body.split(/\r?\n/)
+    file.close
+  end
+
+  def get_devices
+    if @devices.empty?
+      count = 0
+      @lines.each do |l|
+        count += 1
+        STDOUT.putc "." if count % 10 == 0
+        STDOUT.puts count.to_s if count % 100 == 0
+        if l =~ device_re
+          @devices << $1
+        end
+      end
+      @devices.uniq!
+      @devices
+    else
+      @devices
+    end
+  end
+end
+
