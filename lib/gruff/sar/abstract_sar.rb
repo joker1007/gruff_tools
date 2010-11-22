@@ -2,7 +2,7 @@ require 'gruff'
 
 class Gruff::AbstractSar
 
-  def initialize(filename, title, size = 800, font_size = 12)
+  def initialize(filename, title, size = 800, font_size = 16)
     if filename.is_a?(String)
       load_file(filename)
     elsif filename.is_a?(IO) or filename.is_a?(Tempfile)
@@ -14,6 +14,7 @@ class Gruff::AbstractSar
     @graph.x_axis_label = "Time"
     @graph.marker_font_size = font_size
     @graph.marker_count = 8
+    @graph.bottom_margin = 50.0
 
     @cols = []
     @col_values = []
@@ -53,7 +54,7 @@ class Gruff::AbstractSar
   end
 
 
-  def calc(reverse = false, step = 6)
+  def calc(reverse = false, step = 9)
     label_index = 0
     @lines.each do |l|
       if l =~ exclude_re
@@ -68,7 +69,7 @@ class Gruff::AbstractSar
 
     output_labels = {}
     if @col_values[0].size >= 24
-      (0..@col_values[0].size-1).step((@col_values[0].size-1)/6) do |i|
+      (0..@col_values[0].size-1).step((@col_values[0].size-1)/step) do |i|
         output_labels.merge!(i => @labels[i])
       end
     else

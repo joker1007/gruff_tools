@@ -93,10 +93,12 @@ when "iostat_u"
   graph_klass = Gruff::IostatBusy
 end
 
+require 'lib/gruff/base'
+
 # Graph init info
 size = opts[:size] ? opts[:size] : 800
 name = opts[:name] ? opts[:name] : opts[:type]
-fontsize = opts[:fontsize] ? opts[:fontsize] : 12
+fontsize = opts[:fontsize] ? opts[:fontsize] : 16
 
 if opts[:type].index("nicstat") or opts[:type].index("iostat")
   interface_or_device = ARGV[1]
