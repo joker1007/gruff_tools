@@ -3,6 +3,7 @@ require "rubygems"
 require "sinatra"
 
 require 'lib/gruff/gruff_tool'
+require 'lib/gruff/base'
 
 get '/' do
   erb :home
@@ -18,8 +19,15 @@ post '/create' do
   else
     @name = @type
   end
+
   size = params[:size] ? params[:size] : 800
   theme = params[:theme]
+
+  if params[:step] and !params[:step].empty?
+    step = params[:step].to_i - 1
+  else
+    step = 9
+  end
 
   @output = "#{Time.now.to_i}.png"
 
@@ -36,7 +44,7 @@ post '/create' do
     gruff.theme = theme
   end
 
-  gruff.calc
+  gruff.calc(false, step)
   gruff.write("public/" + @output)
 
   erb :create

@@ -2,6 +2,49 @@ require 'rubygems'
 require 'gruff'
 
 module Gruff
+  class Base
+    def theme_japan
+      # Colors
+      @blue = '#003755'
+      @yellow = '#C89637'
+      @green = '#A5D75F'
+      @red = '#C80000'
+      @purple = '#5A2864'
+      @orange = '#EFAA43'
+      @white = 'black'
+      @colors = [@yellow, @blue, @green, @red, @purple, @orange, @white]
+
+      self.theme = {
+        :colors => @colors,
+        :marker_color => 'black',
+        :font_color => 'black',
+        :background_colors => ['#D0D0D0', '#F0F0F0']
+      }
+    end
+
+    def theme_letoro
+      # Colors
+      @blue = '#8CAAC8'
+      @yellow = '#FFB428'
+      @gray = '#BEC3BE'
+      @red = '#C80000'
+      @purple = '#5A2864'
+      @orange = '#EFAA43'
+      @white = 'white'
+      @colors = [@blue, @gray, @red, @white, @yellow, @purple, @orange]
+
+      self.theme = {
+        :colors => @colors,
+        :marker_color => 'white',
+        :font_color => 'white',
+        :background_colors => ['#694B28', '#695A14']
+      }
+    end
+  end
+end
+
+
+module Gruff
   autoload :AbstractSar, 'lib/gruff/sar/abstract_sar'
   autoload :IostatCount, 'lib/gruff/iostat'
   autoload :IostatByte, 'lib/gruff/iostat'

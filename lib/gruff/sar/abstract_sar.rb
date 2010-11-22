@@ -30,7 +30,7 @@ class Gruff::AbstractSar
   end
 
   def theme=(theme_name)
-    valid_theme = %W{37signals greyscale keynote odeo pastel keynote rails_keynote}
+    valid_theme = %W{37signals greyscale keynote odeo pastel keynote rails_keynote japan letoro}
     valid_theme.include?(theme_name)
     @graph.send("theme_#{theme_name}")
   end
@@ -68,7 +68,7 @@ class Gruff::AbstractSar
 
 
     output_labels = {}
-    if @col_values[0].size >= 24
+    if @col_values[0].size >= 10
       (0..@col_values[0].size-1).step((@col_values[0].size-1)/step) do |i|
         output_labels.merge!(i => @labels[i])
       end
