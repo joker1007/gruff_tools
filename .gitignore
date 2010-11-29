@@ -2,4 +2,3 @@ tmp/*
 *.png
 *.log
 *.swp
-Gemfile.lock
