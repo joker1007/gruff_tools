@@ -1,13 +1,39 @@
 # coding: utf-8
 require "rubygems"
 require "sinatra"
+require "mongoid"
+require "lib/mongoid/grid"
 
 require 'lib/gruff/gruff_tool'
 require 'lib/gruff/base'
 
+#init Mongoid
+file_name = File.join(File.dirname(__FILE__), "mongoid.yml")
+@settings = YAML.load(ERB.new(File.new(file_name).read).result)
+
+Mongoid.configure do |config|
+  config.from_hash(@settings[ENV['RACK_ENV']])
+end
+
+class GraphData
+  include Mongoid::Document
+  include Mongoid::Grid
+  field :name
+  attachment :graph_image
+end
+
+
+
 get '/' do
   erb :home
 end
+
+get '/graph_image' do
+  content_type 'image/png'
+  data = GraphData.find(:first, :conditions => {:name => "1291134271.png"})
+  data.graph_image.read
+end
+
 
 post '/create' do
   
@@ -46,6 +72,9 @@ post '/create' do
 
   gruff.calc(false, step)
   gruff.write("public/" + @output)
+  data = GraphData.create(:name => @output)
+  data.set_graph_image(gruff.to_blob, @output)
+  data.save
 
   erb :create
 end

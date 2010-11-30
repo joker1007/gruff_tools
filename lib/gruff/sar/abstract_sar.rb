@@ -118,4 +118,11 @@ class Gruff::AbstractSar
     @graph.write(output)
   end
 
+  def to_blob(min = nil, max = nil)
+    @graph.minimum_value = min ? min : 0
+    @graph.maximum_value = max if max
+
+    @graph.to_blob
+  end
+
 end

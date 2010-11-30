@@ -65,4 +65,9 @@ class Gruff::NicstatUsage < Gruff::AbstractSar
     super
   end
 
+  def to_blob(min = nil, max = nil)
+    @graph.maximum_value = 100
+
+    super
+  end
 end
