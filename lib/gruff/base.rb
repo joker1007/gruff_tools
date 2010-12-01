@@ -38,22 +38,23 @@ module Gruff
       return if @hide_line_markers
 
       if !@labels[index].nil? && @labels_seen[index].nil?
-        x_offset = x_offset - calculate_width(@marker_font_size, @labels[index]) / 2.0
-        @d.rotation = -90.0
-        y_offset = @graph_bottom - LABEL_MARGIN * 2
+        #x_offset = x_offset - calculate_width(@marker_font_size, @labels[index]) / 2.0
+        y_offset = @graph_bottom - 10
+        p y_offset
 
         @d.fill = @font_color
         @d.font = @font if @font
         @d.stroke('transparent')
         @d.font_weight = NormalWeight
         @d.pointsize = scale_fontsize(@marker_font_size)
+        @d.rotation = 90.0
         @d.gravity = WestGravity
         @d = @d.annotate_scaled(@base_image,
                                 1.0, 1.0,
                                 x_offset, y_offset,
                                 @labels[index], @scale)
         @labels_seen[index] = 1
-        @d.rotation = 90.0
+        @d.rotation = -90.0
         debug { @d.line 0.0, y_offset, @raw_columns, y_offset }
       end
     end

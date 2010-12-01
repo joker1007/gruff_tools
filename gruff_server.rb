@@ -62,9 +62,9 @@ post '/create' do
 
   if @type.index("nicstat") or @type.index("iostat")
     interface = params[:interface]
-    gruff = graph_klass.new(f, interface, @name, size, 14)
+    gruff = graph_klass.new(f, interface, @name, size, 16)
   else
-    gruff = graph_klass.new(f, @name, size, 14)
+    gruff = graph_klass.new(f, @name, size, 16)
   end
 
   if theme
