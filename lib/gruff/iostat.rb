@@ -1,5 +1,5 @@
 
-class Gruff::IostatCount < Gruff::AbstractSar
+class Gruff::IostatCount < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+(r\/s)[\s\t]+(w\/s)[\s\t]+kr\/s[\s\t]+kw\/s[\s\t]+wait[\s\t]+actv[\s\t]+wsvc_t[\s\t]+asvc_t[\s\t]+%w[\s\t]+%b[\s\t]+device/
   end
@@ -23,7 +23,7 @@ class Gruff::IostatCount < Gruff::AbstractSar
   end
 end
 
-class Gruff::IostatByte < Gruff::AbstractSar
+class Gruff::IostatByte < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r\/s[\s\t]+w\/s[\s\t]+(kr\/s)[\s\t]+(kw\/s)[\s\t]+wait[\s\t]+actv[\s\t]+wsvc_t[\s\t]+asvc_t[\s\t]+%w[\s\t]+%b[\s\t]+device/
   end
@@ -47,7 +47,7 @@ class Gruff::IostatByte < Gruff::AbstractSar
   end
 end
 
-class Gruff::IostatWait < Gruff::AbstractSar
+class Gruff::IostatWait < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r\/s[\s\t]+w\/s[\s\t]+kr\/s[\s\t]+kw\/s[\s\t]+(wait)[\s\t]+(actv)[\s\t]+wsvc_t[\s\t]+asvc_t[\s\t]+%w[\s\t]+%b[\s\t]+device/
   end
@@ -73,7 +73,7 @@ class Gruff::IostatWait < Gruff::AbstractSar
 end
 
 
-class Gruff::IostatBusy < Gruff::AbstractSar
+class Gruff::IostatBusy < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r\/s[\s\t]+w\/s[\s\t]+kr\/s[\s\t]+kw\/s[\s\t]+wait[\s\t]+actv[\s\t]+wsvc_t[\s\t]+asvc_t[\s\t]+(%w)[\s\t]+(%b)[\s\t]+device/
   end
@@ -111,44 +111,46 @@ class Gruff::IostatBusy < Gruff::AbstractSar
 end
 
 class Gruff::IostatMultiDevice
+  def header_re
+    /.*?[\s\t]+r\/s[\s\t]+w\/s[\s\t]+kr\/s[\s\t]+kw\/s[\s\t]+wait[\s\t]+actv[\s\t]+wsvc_t[\s\t]+asvc_t[\s\t]+%w[\s\t]+%b[\s\t]+device/
+  end
+
   def device_re
     /.*?[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+[\d\.]+[\s\t]+\d+[\s\t]+\d+[\s\t]+(#{@device})$/
   end
 
   def initialize(filename, device)
     if filename.is_a?(String)
-      load_file(filename)
+      @input = File.open(filename)
     elsif filename.is_a?(IO) or filename.is_a?(Tempfile)
-      @lines = filename.readlines
+      @input = filename
     end
 
     @device = device
     @devices = []
   end
 
-  def load_file(filename)
-    file = File.open(filename)
-    body = file.read(1024*150)
-    @lines = body.split(/\r?\n/)
-    file.close
-  end
-
   def get_devices
+    parse_flag = false
     if @devices.empty?
-      count = 0
-      @lines.each do |l|
-        count += 1
-        STDOUT.putc "." if count % 10 == 0
-        STDOUT.puts count.to_s if count % 100 == 0
-        if l =~ device_re
+      until @input.eof?
+        line = @input.readline.chomp
+
+        if parse_flag == true and line =~ header_re
+          break
+        end
+
+        if parse_flag == false and line =~ header_re
+          parse_flag = true
+        end
+
+        if line =~ device_re
           @devices << $1
         end
       end
       @devices.uniq!
-      @devices
-    else
-      @devices
     end
+    @devices
   end
 end
 

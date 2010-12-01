@@ -1,5 +1,5 @@
 
-class Gruff::SarA < Gruff::AbstractSar
+class Gruff::SarA < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+(iget\/s)[\s\t]+(namei\/s)[\s\t]+(dirbk\/s)/
   end

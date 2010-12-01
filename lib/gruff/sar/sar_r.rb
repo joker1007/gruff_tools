@@ -1,5 +1,5 @@
 
-class Gruff::SarR < Gruff::AbstractSar
+class Gruff::SarR < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+(freemem)[\s\t]+(freeswap)/
   end

@@ -1,5 +1,5 @@
 
-class Gruff::NicstatByte < Gruff::AbstractSar
+class Gruff::NicstatByte < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+Int[\s\t]+(rKB\/s)[\s\t]+(wKB\/s)[\s\t]+rPk\/s[\s\t]+wPk\/s[\s\t]+rAvs[\s\t]+wAvs[\s\t]+%Util[\s\t]+Sat/
   end
@@ -19,7 +19,7 @@ class Gruff::NicstatByte < Gruff::AbstractSar
   end
 end
 
-class Gruff::NicstatPacket < Gruff::AbstractSar
+class Gruff::NicstatPacket < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+Int[\s\t]+rKB\/s[\s\t]+wKB\/s[\s\t]+(rPk\/s)[\s\t]+(wPk\/s)[\s\t]+rAvs[\s\t]+wAvs[\s\t]+%Util[\s\t]+Sat/
   end
@@ -39,7 +39,7 @@ class Gruff::NicstatPacket < Gruff::AbstractSar
   end
 end
 
-class Gruff::NicstatUsage < Gruff::AbstractSar
+class Gruff::NicstatUsage < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+Int[\s\t]+rKB\/s[\s\t]+wKB\/s[\s\t]+rPk\/s[\s\t]+wPk\/s[\s\t]+rAvs[\s\t]+wAvs[\s\t]+(%Util)[\s\t]+Sat/
   end

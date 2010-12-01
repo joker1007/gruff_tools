@@ -1,5 +1,5 @@
 
-class Gruff::SarQ1 < Gruff::AbstractSar
+class Gruff::SarQ1 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+(runq-sz)[\s\t]+\%runocc[\s\t]+(swpq-sz)[\s\t]+\%swpocc/
   end
@@ -18,7 +18,7 @@ class Gruff::SarQ1 < Gruff::AbstractSar
   end
 end
 
-class Gruff::SarQ2 < Gruff::AbstractSar
+class Gruff::SarQ2 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+runq-sz[\s\t]+(\%runocc)[\s\t]+swpq-sz[\s\t]+(\%swpocc)/
   end

@@ -1,5 +1,5 @@
 
-class Gruff::SarW1 < Gruff::AbstractSar
+class Gruff::SarW1 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+(swpin\/s)[\s\t]+(bswin\/s)[\s\t]+(swpot\/s)[\s\t]+bswot\/s[\s\t]+pswch\/s/
   end
@@ -18,7 +18,7 @@ class Gruff::SarW1 < Gruff::AbstractSar
   end
 end
 
-class Gruff::SarW2 < Gruff::AbstractSar
+class Gruff::SarW2 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+swpin\/s[\s\t]+bswin\/s[\s\t]+swpot\/s[\s\t]+(bswot\/s)[\s\t]+pswch\/s/
   end
@@ -37,7 +37,7 @@ class Gruff::SarW2 < Gruff::AbstractSar
   end
 end
 
-class Gruff::SarW3 < Gruff::AbstractSar
+class Gruff::SarW3 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+swpin\/s[\s\t]+bswin\/s[\s\t]+swpot\/s[\s\t]+bswot\/s[\s\t]+(pswch\/s)/
   end

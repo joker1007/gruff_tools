@@ -45,7 +45,7 @@ end
 
 
 module Gruff
-  autoload :AbstractSar, 'lib/gruff/sar/abstract_sar'
+  autoload :AbstractSysstat, 'lib/gruff/sar/abstract_sysstat'
   autoload :IostatCount, 'lib/gruff/iostat'
   autoload :IostatByte, 'lib/gruff/iostat'
   autoload :IostatWait, 'lib/gruff/iostat'

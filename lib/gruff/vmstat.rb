@@ -1,5 +1,5 @@
 
-class Gruff::VmstatFreeMemory < Gruff::AbstractSar
+class Gruff::VmstatFreeMemory < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r[\s\t]+b[\s\t]+w[\s\t]+(swap)[\s\t]+(free)[\s\t]+re[\s\t]+mf[\s\t]+pi[\s\t]+po[\s\t]+fr[\s\t]+de[\s\t]+sr[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+in[\s\t]+sy[\s\t]+cs[\s\t]+us[\s\t]+sy[\s\t]+id/
   end
@@ -33,7 +33,7 @@ class Gruff::VmstatFreeMemory < Gruff::AbstractSar
   end
 end
 
-class Gruff::VmstatPage1 < Gruff::AbstractSar
+class Gruff::VmstatPage1 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r[\s\t]+b[\s\t]+w[\s\t]+swap[\s\t]+free[\s\t]+re[\s\t]+mf[\s\t]+(pi)[\s\t]+(po)[\s\t]+(fr)[\s\t]+(de)[\s\t]+sr[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+in[\s\t]+sy[\s\t]+cs[\s\t]+us[\s\t]+sy[\s\t]+id/
   end
@@ -52,7 +52,7 @@ class Gruff::VmstatPage1 < Gruff::AbstractSar
   end
 end
 
-class Gruff::VmstatPage2 < Gruff::AbstractSar
+class Gruff::VmstatPage2 < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r[\s\t]+b[\s\t]+w[\s\t]+swap[\s\t]+free[\s\t]+(re)[\s\t]+mf[\s\t]+pi[\s\t]+po[\s\t]+fr[\s\t]+de[\s\t]+(sr)[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+in[\s\t]+sy[\s\t]+cs[\s\t]+us[\s\t]+sy[\s\t]+id/
   end
@@ -71,7 +71,7 @@ class Gruff::VmstatPage2 < Gruff::AbstractSar
   end
 end
 
-class Gruff::VmstatCpu < Gruff::AbstractSar
+class Gruff::VmstatCpu < Gruff::AbstractSysstat
   def header_re
     /(.*?)[\s\t]+r[\s\t]+b[\s\t]+w[\s\t]+swap[\s\t]+free[\s\t]+re[\s\t]+mf[\s\t]+pi[\s\t]+po[\s\t]+fr[\s\t]+de[\s\t]+sr[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+.*?[\s\t]+in[\s\t]+sy[\s\t]+cs[\s\t]+(us)[\s\t]+(sy)[\s\t]+(id)/
   end

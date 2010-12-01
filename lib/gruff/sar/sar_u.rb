@@ -1,5 +1,5 @@
 
-class Gruff::SarU < Gruff::AbstractSar
+class Gruff::SarU < Gruff::AbstractSysstat
 
   def header_re
     /(.*?)[\s\t]+(\%usr)[\s\t]+(\%sys)[\s\t]+(\%wio)[\s\t]+(\%idle)/
