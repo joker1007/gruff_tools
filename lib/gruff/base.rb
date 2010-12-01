@@ -39,8 +39,7 @@ module Gruff
 
       if !@labels[index].nil? && @labels_seen[index].nil?
         #x_offset = x_offset - calculate_width(@marker_font_size, @labels[index]) / 2.0
-        y_offset = @graph_bottom - 10
-        p y_offset
+        y_offset = @raw_rows - 35 - calculate_width(@marker_font_size, @labels[index])
 
         @d.fill = @font_color
         @d.font = @font if @font
