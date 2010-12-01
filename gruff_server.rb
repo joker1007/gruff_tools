@@ -28,9 +28,9 @@ get '/' do
   erb :home
 end
 
-get '/graph_image' do
+get '/graph_image/:id' do
   content_type 'image/png'
-  data = GraphData.find(:first, :conditions => {:name => "1291134271.png"})
+  data = GraphData.find(:first, :conditions => {:name => params[:id]})
   data.graph_image.read
 end
 
@@ -55,7 +55,8 @@ post '/create' do
     step = 9
   end
 
-  @output = "#{Time.now.to_i}.png"
+  format = "PNG"
+  @file_id = "graph-#{File.basename(f.path)}"
 
   graph_klass = type_to_klass(@type)
 
@@ -71,9 +72,8 @@ post '/create' do
   end
 
   gruff.calc(false, step)
-  gruff.write("public/" + @output)
-  data = GraphData.create(:name => @output)
-  data.set_graph_image(gruff.to_blob, @output)
+  data = GraphData.create(:name => @file_id)
+  data.set_graph_image(gruff.to_blob(format), "#{@file_id}.#{format.downcase}")
   data.save
 
   erb :create
