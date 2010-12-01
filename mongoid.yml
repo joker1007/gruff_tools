@@ -1,5 +1,5 @@
 defaults: &defaults
-  host: localhost
+  #host: localhost
   # slaves:
   #   - host: slave1.local
   #     port: 27018
@@ -8,13 +8,16 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  host: localhost
   database: graph_data_development
 
 test:
   <<: *defaults
+  host: localhost
   database: graph_data_test
 
 # set these environment variables on your prod server
 production:
   <<: *defaults
-  host: <%= ENV['MONGOHQ_URL'] %>
+  uri: <%= ENV['MONGOHQ_URL'] %>
+  database: graph_data
