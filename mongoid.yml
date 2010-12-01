@@ -20,4 +20,3 @@ test:
 production:
   <<: *defaults
   uri: <%= ENV['MONGOHQ_URL'] %>
-  database: graph_data
