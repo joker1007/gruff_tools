@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'gruff'
+require 'gruff' unless defined?(Gruff)
 
 module Gruff
   class Base

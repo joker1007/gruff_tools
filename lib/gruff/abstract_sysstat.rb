@@ -1,5 +1,3 @@
-require 'gruff'
-
 class Gruff::AbstractSysstat
 
   def initialize(filename, title, size = 800, font_size = 16)
