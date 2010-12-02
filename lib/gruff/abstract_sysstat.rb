@@ -118,11 +118,11 @@ class Gruff::AbstractSysstat
     @graph.write(output)
   end
 
-  def to_blob(min = nil, max = nil)
+  def to_blob(format = "PNG", min = nil, max = nil)
     @graph.minimum_value = min ? min : 0
     @graph.maximum_value = max if max
 
-    @graph.to_blob
+    @graph.to_blob(format)
   end
 
 end

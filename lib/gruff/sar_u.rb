@@ -30,7 +30,7 @@ class Gruff::SarU < Gruff::AbstractSysstat
     super
   end
 
-  def to_blob(min = nil, max = nil)
+  def to_blob(format = "png", min = nil, max = nil)
     @graph.maximum_value = 100
 
     super

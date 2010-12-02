@@ -1,3 +1,7 @@
 <h3><%= @type %> Graph</h3>
 <p>D&D or 右クリックで、ローカルに保存してください。</p>
-<img src="/graph_image/<%= @file_id %>" />
+<% if @format == "SVG" %>
+  <object data="/graph_image/<%= @file_id %>" type="image/svg+xml"></object>
+<% else %>
+  <img src="/graph_image/<%= @file_id %>" />
+<% end %>

@@ -65,7 +65,7 @@ class Gruff::NicstatUsage < Gruff::AbstractSysstat
     super
   end
 
-  def to_blob(min = nil, max = nil)
+  def to_blob(format = "PNG", min = nil, max = nil)
     @graph.maximum_value = 100
 
     super
