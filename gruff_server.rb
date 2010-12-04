@@ -2,25 +2,26 @@
 require "rubygems"
 require "sinatra"
 require "mongoid"
-require "lib/mongoid/grid"
+require 'mime/types'
+#require "lib/mongoid/grid"
 
 require 'lib/gruff/gruff_tool'
 require 'lib/gruff/base'
 
 #init Mongoid
-file_name = File.join(File.dirname(__FILE__), "mongoid.yml")
-@settings = YAML.load(ERB.new(File.new(file_name).read).result)
+#file_name = File.join(File.dirname(__FILE__), "mongoid.yml")
+#@settings = YAML.load(ERB.new(File.new(file_name).read).result)
 
-Mongoid.configure do |config|
-  config.from_hash(@settings[ENV['RACK_ENV']])
-end
+#Mongoid.configure do |config|
+  #config.from_hash(@settings[ENV['RACK_ENV']])
+#end
 
-class GraphData
-  include Mongoid::Document
-  include Mongoid::Grid
-  field :name
-  attachment :graph_image
-end
+#class GraphData
+  #include Mongoid::Document
+  #include Mongoid::Grid
+  #field :name
+  #attachment :graph_image
+#end
 
 
 
@@ -55,7 +56,7 @@ post '/create' do
     step = 9
   end
 
-  @format = "PNG"
+  @format = params[:format] ? params[:format] : "PNG"
   @file_id = "graph-#{File.basename(f.path)}"
 
   graph_klass = type_to_klass(@type)
@@ -71,12 +72,12 @@ post '/create' do
     gruff.theme = theme
   end
 
-  gruff.calc(false, step)
-  data = GraphData.create(:name => @file_id)
-  data.set_graph_image(gruff.to_blob(@format), "#{@file_id}.#{@format.downcase}")
-  data.save
+  type = MIME::Types.type_for(".#{@format.downcase}").first
 
-  erb :create
+  content_type type
+
+  gruff.calc(false, step)
+  gruff.to_blob(@format)
 end
 
 
