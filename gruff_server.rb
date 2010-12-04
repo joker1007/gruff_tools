@@ -29,6 +29,10 @@ get '/' do
   erb :home
 end
 
+get '/usage' do
+  erb :usage
+end
+
 get '/graph_image/:id' do
   data = GraphData.find(:first, :conditions => {:name => params[:id]})
   content_type data.graph_image_type
@@ -47,7 +51,12 @@ post '/create' do
     @name = @type
   end
 
-  size = params[:size] ? params[:size] : 800
+  if params[:size] and 
+    size = params[:size].index("x") ? params[:size] : params[:size].to_i
+  else
+    size = 800
+  end
+
   theme = params[:theme]
 
   if params[:step] and !params[:step].empty?
